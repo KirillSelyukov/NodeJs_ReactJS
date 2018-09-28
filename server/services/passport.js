@@ -4,7 +4,6 @@ const keys = require('../config/keys');
 const mongoose = require('mongoose');
 require('../models/user');
 
-
 const User = mongoose.model('users');
 
 passport.use(
@@ -15,7 +14,13 @@ passport.use(
       callbackURL: '/auth/google/callback'
     },
     (accessTocken, refreshToken, profile, done) => {
-      new User({googleId: profile.id}).save();
+      User.findOne({ googleId: profile.id }).then(existingUser => {
+        if (existingUser) {
+          console.log('user already exist');
+        } else {
+          new User({ googleId: profile.id }).save();
+        }
+      });
     }
   )
 );
