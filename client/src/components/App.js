@@ -5,9 +5,9 @@ import * as actions from '../store/actions';
 
 import Header from './Header';
 import Dashboard from './Dashboard';
+import Landing from './Landing';
 
 const SurveyNew = () => <h1>SurveyNew</h1>;
-const Landing = () => <h1>Landing</h1>;
 
 class App extends Component {
   componentDidMount() {
